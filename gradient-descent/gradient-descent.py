@@ -1,4 +1,4 @@
-epochs = 100
+epochs = 200
 learning_rate = 0.1
 
 
@@ -41,7 +41,6 @@ ys = [2, 4, 6, 8]
 theta1 = 0
 theta2 = 1
 def hypothesis(t1, t2, x): return t1 + t2 * x
-
 
 # i = 0
 # while i < epochs:
