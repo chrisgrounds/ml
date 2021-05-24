@@ -21,10 +21,9 @@ def gradient_descent(hypothesis, xs, ys):
         sum_differences_t1 = 0
 
         for i, _ in enumerate(xs):
-            sum_differences_t0 += hypothesis(theta0, theta1, xs[i]) - ys[i]
-
-        for i, _ in enumerate(xs):
-            sum_differences_t1 += (hypothesis(theta0, theta1, xs[i]) - ys[i]) * xs[i]
+            delta = hypothesis(theta0, theta1, xs[i]) - ys[i]
+            sum_differences_t0 += delta
+            sum_differences_t1 += delta * xs[i]
 
         derivative_of_loss_t0 = (1 / size) * sum_differences_t0
         derivative_of_loss_t1 = (1 / size) * sum_differences_t1
