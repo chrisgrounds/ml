@@ -29,8 +29,8 @@ def gradient_descent(hypothesis, xs, ys):
         derivative_of_loss_t0 = (1 / len(xs)) * sum_differences_t0
         derivative_of_loss_t1 = (1 / len(xs)) * sum_differences_t1
 
-        loss = mean_squared_loss(hypothesis, xs, ys, theta0, theta1)
-        print("loss: {}".format(loss))
+        if e % 10 == 0:
+            print("loss: {}".format(mean_squared_loss(hypothesis, xs, ys, theta0, theta1)))
 
         theta0 = theta0 - learning_rate * derivative_of_loss_t0
         theta1 = theta1 - learning_rate * derivative_of_loss_t1
