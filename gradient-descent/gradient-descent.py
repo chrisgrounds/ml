@@ -12,7 +12,7 @@ def mean_squared_loss(hypothesis, xs, ys, t0, t1):
 
 
 def gradient_descent(hypothesis, xs, ys):
-    theta0, theta1 = 0, 1
+    theta0, theta1, size = 0, 1, len(xs)
 
     e = 0
     while e < epochs:
@@ -26,8 +26,8 @@ def gradient_descent(hypothesis, xs, ys):
         for i, _ in enumerate(xs):
             sum_differences_t1 += (hypothesis(theta0, theta1, xs[i]) - ys[i]) * xs[i]
 
-        derivative_of_loss_t0 = (1 / len(xs)) * sum_differences_t0
-        derivative_of_loss_t1 = (1 / len(xs)) * sum_differences_t1
+        derivative_of_loss_t0 = (1 / size) * sum_differences_t0
+        derivative_of_loss_t1 = (1 / size) * sum_differences_t1
 
         if e % 10 == 0:
             print("loss: {}".format(mean_squared_loss(hypothesis, xs, ys, theta0, theta1)))
