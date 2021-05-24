@@ -41,8 +41,10 @@ def gradient_descent(hypothesis, xs, ys):
 xs = [1, 2, 3, 4]
 ys = [2, 4, 6, 8]
 
-theta0 = 0
-theta1 = 1
 def hypothesis(t0, t1, x): return t0 + t1 * x
 
-print(gradient_descent(hypothesis, xs, ys))
+t1, t2 = gradient_descent(hypothesis, xs, ys)
+
+print("t1: {}, t2: {}".format(t1, t2))
+
+print("predict: 100 -> {}".format(hypothesis(t1, t2, 100)))
