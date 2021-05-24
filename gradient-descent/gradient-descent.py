@@ -17,18 +17,19 @@ def gradient_descent(hypothesis, xs, ys):
     e = 0
     while e < epochs:
         e += 1
-        sum_differences_t0, sum_differences_t1 = 0, 0
+        sum_delta_t0, sum_delta_t1 = 0, 0
 
         for i, _ in enumerate(xs):
             delta = hypothesis(theta0, theta1, xs[i]) - ys[i]
-            sum_differences_t0 += delta
-            sum_differences_t1 += delta * xs[i]
+            sum_delta_t0 += delta
+            sum_delta_t1 += delta * xs[i]
 
-        derivative_of_loss_t0 = (1 / size) * sum_differences_t0
-        derivative_of_loss_t1 = (1 / size) * sum_differences_t1
+        derivative_of_loss_t0 = (1 / size) * sum_delta_t0
+        derivative_of_loss_t1 = (1 / size) * sum_delta_t1
 
         if e % 10 == 0:
-            print("loss: {}".format(mean_squared_loss(hypothesis, xs, ys, theta0, theta1)))
+            print("loss: {}".format(mean_squared_loss(
+                hypothesis, xs, ys, theta0, theta1)))
 
         theta0 = theta0 - learning_rate * derivative_of_loss_t0
         theta1 = theta1 - learning_rate * derivative_of_loss_t1
@@ -39,7 +40,9 @@ def gradient_descent(hypothesis, xs, ys):
 xs = [1, 2, 3, 4]
 ys = [2, 4, 6, 8]
 
+
 def hypothesis(t0, t1, x): return t0 + t1 * x
+
 
 t1, t2 = gradient_descent(hypothesis, xs, ys)
 
