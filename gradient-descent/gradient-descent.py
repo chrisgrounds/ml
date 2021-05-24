@@ -17,8 +17,7 @@ def gradient_descent(hypothesis, xs, ys):
     e = 0
     while e < epochs:
         e += 1
-        sum_differences_t0 = 0
-        sum_differences_t1 = 0
+        sum_differences_t0, sum_differences_t1 = 0, 0
 
         for i, _ in enumerate(xs):
             delta = hypothesis(theta0, theta1, xs[i]) - ys[i]
