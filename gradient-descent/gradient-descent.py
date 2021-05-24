@@ -5,10 +5,8 @@ learning_rate = 0.01
 def mean_squared_loss(hypothesis, xs, ys):
     sum_delta_squared = 0
 
-    i = 0
-    while i < len(xs):
+    for i, _ in enumerate(xs):
         sum_delta_squared += (hypothesis(xs[i]) - ys[i]) ** 2
-        i += 1
 
     return (1 / (2 * len(xs))) * sum_delta_squared
 
@@ -21,23 +19,19 @@ def gradient_descent(xs, ys):
     e = 0
     while e < epochs:
         e += 1
-        i, j, sum_differences = 0, 0, 0
+        sum_differences = 0
 
-        while i < len(xs):
+        for i, _ in enumerate(xs):
             sum_differences += hypothesis(xs[i]) - ys[i]
 
-            i += 1
-
-        while j < len(xs):
+        for i, _ in enumerate(xs):
             derivative_of_loss_t1 = (1 / len(xs)) * sum_differences
-            derivative_of_loss_t2 = (1 / len(xs)) * sum_differences * xs[j]
+            derivative_of_loss_t2 = (1 / len(xs)) * sum_differences * xs[i]
 
-            print(sum_differences)
+            # print(sum_differences)
 
             theta1 = theta1 - learning_rate * derivative_of_loss_t1
             theta2 = theta2 - learning_rate * derivative_of_loss_t2
-
-            j += 1
 
     return theta1, theta2
 
