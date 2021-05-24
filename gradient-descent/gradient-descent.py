@@ -2,11 +2,11 @@ epochs = 200
 learning_rate = 0.1
 
 
-def mean_squared_loss(hypothesis, xs, ys):
+def mean_squared_loss(hypothesis, xs, ys, t1, t2):
     sum_delta_squared = 0
 
     for i, _ in enumerate(xs):
-        sum_delta_squared += (hypothesis(xs[i]) - ys[i]) ** 2
+        sum_delta_squared += (hypothesis(t1, t2, xs[i]) - ys[i]) ** 2
 
     return (1 / (2 * len(xs))) * sum_delta_squared
 
@@ -28,6 +28,9 @@ def gradient_descent(hypothesis, xs, ys):
 
         derivative_of_loss_t1 = (1 / len(xs)) * sum_differences_t1
         derivative_of_loss_t2 = (1 / len(xs)) * sum_differences_t2
+
+        loss = mean_squared_loss(hypothesis, xs, ys, theta1, theta2)
+        print("loss: {}".format(loss))
 
         theta1 = theta1 - learning_rate * derivative_of_loss_t1
         theta2 = theta2 - learning_rate * derivative_of_loss_t2
