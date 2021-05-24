@@ -1,5 +1,5 @@
 epochs = 100
-learning_rate = 0.01
+learning_rate = 0.1
 
 
 def mean_squared_loss(hypothesis, xs, ys):
@@ -17,25 +17,26 @@ def gradient_descent(hypothesis, xs, ys):
     e = 0
     while e < epochs:
         e += 1
-        sum_differences = 0
+        sum_differences_t1 = 0
+        sum_differences_t2 = 0
 
         for i, _ in enumerate(xs):
-            sum_differences += hypothesis(theta1, theta2, xs[i]) - ys[i]
+            sum_differences_t1 += hypothesis(theta1, theta2, xs[i]) - ys[i]
 
         for i, _ in enumerate(xs):
-            derivative_of_loss_t1 = (1 / len(xs)) * sum_differences
-            derivative_of_loss_t2 = (1 / len(xs)) * sum_differences * xs[i]
+            sum_differences_t2 += (hypothesis(theta1, theta2, xs[i]) - ys[i]) * xs[i]
 
-            # print(sum_differences)
+        derivative_of_loss_t1 = (1 / len(xs)) * sum_differences_t1
+        derivative_of_loss_t2 = (1 / len(xs)) * sum_differences_t2
 
-            theta1 = theta1 - learning_rate * derivative_of_loss_t1
-            theta2 = theta2 - learning_rate * derivative_of_loss_t2
+        theta1 = theta1 - learning_rate * derivative_of_loss_t1
+        theta2 = theta2 - learning_rate * derivative_of_loss_t2
 
     return theta1, theta2
 
 
-xs = [3, 1, 0, 4]
-ys = [3, 2, 1, 3]
+xs = [1, 2, 3, 4]
+ys = [2, 4, 6, 8]
 
 theta1 = 0
 theta2 = 1
