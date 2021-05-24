@@ -45,10 +45,4 @@ theta1 = 0
 theta2 = 1
 def hypothesis(t1, t2, x): return t1 + t2 * x
 
-# i = 0
-# while i < epochs:
-#     i = i + 1
-#     loss = mean_squared_loss(hypothesis, xs, ys)
-#     print("loss: {}".format(loss))
-
 print(gradient_descent(hypothesis, xs, ys))
