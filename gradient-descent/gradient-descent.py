@@ -1,3 +1,5 @@
+import numpy as np
+
 epochs = 200
 learning_rate = 0.1
 
@@ -41,11 +43,13 @@ xs = [1, 2, 3, 4]
 ys = [2, 4, 6, 8]
 
 
-def hypothesis(t0, t1, x): return t0 + t1 * x
+def linear_regression(t0, t1, x): return t0 + t1 * x
+def linear_regression_matrix(t0, t1, x): return np.dot([t0, t1], [1, x])
+def multivar_linear_regression(thetas, xs): return np.dot(thetas, xs)
 
 
-t1, t2 = gradient_descent(hypothesis, xs, ys)
+t1, t2 = gradient_descent(linear_regression_matrix, xs, ys)
 
 print("t1: {}, t2: {}".format(t1, t2))
 
-print("predict: 100 -> {}".format(hypothesis(t1, t2, 100)))
+print("predict: 100 -> {}".format(linear_regression_matrix(t1, t2, 100)))
